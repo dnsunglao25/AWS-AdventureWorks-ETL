@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'S3 Bucket for AdventureWorks Data Landing Zone'
+
+Resources:
+  DataLandingBucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      # Change 'my-adventureworks-data-xyz' to something unique (use your name/date)
+      BucketName: !Sub 'adventureworks-landing-${AWS::AccountId}'
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+Outputs:
+  BucketName:
+    Value: !Ref DataLandingBucket
+    Description: Name of the S3 bucket created
